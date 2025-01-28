@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Videos;
 import com.example.demo.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,5 +36,13 @@ public class VideoController {
     @GetMapping("/list")
     public List<Videos> VideosList() {
         return  videoService.getAll();
+    }
+    @GetMapping("/rent")
+    public ResponseEntity<?> rentVideos(@RequestParam String  videoId, @RequestParam String customerId ) {
+        return  videoService.rentVideos(videoId,customerId);
+    }
+    @GetMapping("/return")
+    public ResponseEntity<?> returnVideos(@RequestParam String  videoId, @RequestParam String customerId ) {
+        return  videoService.returnVideos(videoId,customerId);
     }
 }

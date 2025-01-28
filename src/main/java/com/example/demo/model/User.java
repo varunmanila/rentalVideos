@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,6 +27,8 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private Role role;
+    @DBRef
+    private  List<Videos> videos;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
